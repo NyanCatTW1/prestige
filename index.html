@@ -5,9 +5,13 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <textarea readonly id="log"></textarea>
 	<div>
 		<h1><span id="coins">0</span> coins</h1>
 		<h3><span id="gain">0</span> coins/second</h3>
+        <button id="auto" onclick="auto = !auto">Auto play: On</button>
+        <button id="speedy" onclick="speedy = !speedy">Fuck it just reach the end for me ASAP.</button>
+        <h3><span>Tick: <span id="tick">0</span></span></h3>
 	</div>
 	<table>
 		<tr>

@@ -6,3 +6,14 @@ body {
 table {
 	width: inherit;
 }
+
+#log {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 20%;
+  border: 1px solid black;
+  overflow-y: scroll;
+  resize: none;
+}
