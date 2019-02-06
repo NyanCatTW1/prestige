@@ -60,8 +60,11 @@ function activatePrestige(id) {
 
 function pushLog(text) {
   let log = document.getElementById("log")
+  let lines = log.innerHTML.split("\n")
+  lines.push(text)
+  if (lines.length > 50) lines = lines.slice(-50)
+  data.log = lines.join("\n")
   let scroll = log.scrollHeight - log.clientHeight <= log.scrollTop + 1
-  data.log += text + "\n"
   draw()
   if (scroll) log.scrollTop = log.scrollHeight
 }
@@ -81,8 +84,11 @@ function tick() {
     for (i = 9; i >= 0; i--) {
       let result = activatePrestige(i)
       if (result[0]) {
-        if (result[1]) pushLog(`Reached ${prestigeNames[i]} for the first time at tick ${formatValue(data.tick)}`)
-        else pushLog(`Did a ${prestigeNames[i]} at tick ${formatValue(data.tick)}`)
+        if (result[1]) {
+          pushLog(`Reached ${prestigeNames[i]} for the first time at tick ${formatValue(data.tick)}`)
+          if (i>1) pushLog(`Will not log ${prestigeNames[i-2]}s from now on`)
+        }
+        else if (data.bestPrestigeTier-i<2) pushLog(`Did a ${prestigeNames[i]} at tick ${formatValue(data.tick)}`)
         i = 10
       }
     }
