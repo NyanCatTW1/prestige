@@ -54,7 +54,7 @@ function activatePrestige(id) {
       milestone = true
     }
   }
-  draw();
+  if (!auto) draw();
   return [prestiged,milestone];
 }
 
@@ -93,6 +93,7 @@ function tick() {
       }
     }
   }
+  draw()
   setTimeout(tick,1000/data.tps);
 }
 
@@ -162,7 +163,6 @@ window.addEventListener("load", function() {
         }(i))
       );
   }
-  setInterval(draw,100)
   setInterval(save,10000)
   console.log("interval loaded")
   tick()
